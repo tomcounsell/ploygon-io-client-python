@@ -192,6 +192,11 @@ class RESTClient:
         endpoint = f"{self.url}/v1/historic/crypto/{from_}/{to}/{date}"
         return self._handle_response("CryptoHistoricCryptoTradesApiResponse", endpoint, query_params)
 
+    def crypto_aggregates(self, ticker, multiplier, timespan, from_, to,
+                          **query_params) -> models.CryptoAggregatesApiResponse:
+        endpoint = f"{self.url}/v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from_}/{to}"
+        return self._handle_response("CryptoAggregatesApiResponse", endpoint, query_params)
+    
     def crypto_snapshot_all_tickers(self, **query_params) -> models.CryptoSnapshotAllTickersApiResponse:
         endpoint = f"{self.url}/v2/snapshot/locale/global/markets/crypto/tickers"
         return self._handle_response("CryptoSnapshotAllTickersApiResponse", endpoint, query_params)
